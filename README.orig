@@ -1,0 +1,70 @@
+			{- Web Of Code -}
+
+			    Vim client
+
+ 	       http://freaknet.org/alpt/src/utils/woc
+
+
+This is the WoC client for Vim.
+If you don't know what WoC is, read doc/woc_protocol, or see 
+http://dev.dyne.org/trac.cgi/wiki/Woc
+
+Download the latest woc-vim tarball from:
+http://www.freaknet.org/alpt/src/utils/woc/tarball/
+
+*
+** Installation
+*
+
+Read INSTALL
+
+*
+** Usage 
+*
+
+
+*** Browsing
+
+Read the initial comment of woc.vim. You'll find the description of the
+commands and mappings defined by woc.vim.
+
+For a tutorial on WoC, try the demo: demo/README
+
+
+*** Publishing
+
+If you want to add WoC support in your online texts/sources you have several
+options:
+
+	* just include the tags files (tags, cscope.out, ...) in your online
+	  repository. This option is valid only if you aren't using generic 
+	  WoC tags (one like {-this-}).
+
+	* use the  woctags.sh  script to generate .woc/ (as suggested by the
+	  woc protocol) and tags.woc, tags.rev.woc. Include all this files in
+	  your online repository.
+
+Note: If the index.woc has been used, then it must be included in the online 
+      repository, because the aliases defined in it, will be loaded by the WoC 
+      clients when reading the online texts.
+
+The usage of woctags.sh is simple:
+
+	woctags [dir|files] [options to 'find']
+
+	Note:  By default, 'find' searches recursively the current
+		directory. To disable this behaviour use -maxdepth 1
+
+Examples:
+	
+	# Parse everything in the current directory, except the tags files.
+	# Generate .woc/, tags.woc and tags.rev.woc
+	./woctags.sh
+
+	# Generate the WoC tags file, parsing only C sources present in the
+	# current directory and in all the subdirs
+	./woctags.sh ./ -name *.[ch]
+	
+	# The same of above, but limiting the search in the current directory,
+	# i.e without descending on any subdir
+	./woctags.sh ./ -name *.[ch] -maxdepth 1

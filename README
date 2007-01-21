@@ -1,0 +1,16 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1771
+
+This is the WoC client for Vim.
+If you don't know what WoC is, read http://dev.dyne.org/wiki/Woc .
+
+Short description:
+This plugin permits to use "hypertags", i.e. tags pointing to remote files. 
+It also supports cscope and ctags, thus you can use hyper-cscope commands which will bring you to remote locations.
+
+General description:
+Wocvim is a WoC client for Vim. WoC is a protocol which enables the use of hyperlinks in plain ASCII texts. 
+The links can point to local or remote locations. The protocol is specifically designed to support source code, but it can
+be used in any text. For source code, it's also possible to use ad-hoc tag generators like cscope and ctags.
+
+
+woc-vim: http://www.freaknet.org/alpt/src/utils/woc/readme

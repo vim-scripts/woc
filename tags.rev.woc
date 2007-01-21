@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+TAG	woc.vim	/^	" Highlights {-TAG-} and |{TAG}|$/;"	r
+TODO generic downloader	TODO	/^- See {-TODO generic downloader-}$/;"	r
+TODO mouse support	woc.vim	/^" See {-TODO mouse support-}$/;"	r
+TODO wocpath	TODO	/^   form: {-TODO wocpath:"r-} $/;"	r
+TODO wocpath	woc.vim	/^   	" {-TODO wocpath-} . It is hardcoded.$/;"	r
+TODO wocpath	woc.vim	/^   " {-TODO wocpath-} . It is hardcoded.$/;"	r
+WOCClearCache	woc.psy	/^	    call {-WOCClearCache-} :$/;"	r
+WOCInitialize	woc.psy	/^	    call {-WOCInitialize-}:$/;"	r
+WOCLoadIndex	woc.psy	/^	    call {-WOCLoadIndex-} {$/;"	r
+WOCLoadRemote	woc.psy	/^  call {-WOCLoadRemote-} {$/;"	r
+WOCOpenFile	woc.psy	/^	    call {-WOCOpenFile:\/wocdownloader-} {$/;"	r
+WOCOpenFile	woc.psy	/^  call {-WOCOpenFile-} {$/;"	r
+WOC_HOME	TODO	/^   The other places just use {-WOC_HOME-}$/;"	r
+Web Of Code	README	/^			{- Web Of Code -}$/;"	r
+\(\({-\)\@!.\)*	woc.vim	/^	syn match wocHyperTextJump   "{-\\(\\({-\\)\\@!.\\)*-}" contains=wocLeftRef,wocRightRef$/;"	r
+\).\+	woc.vim	/^			             "\\({-\\).\\+-}" (old regexp)$/;"	r
+dev/index.woc	TODO	/^- Use all the options defined in {-dev\/index.woc:"fj-}$/;"	r
+doc/woc_protocol	woc.psy	/^Read {-doc\/woc_protocol:"fj-} for more information.$/;"	r
+mytag	woc.vim	/^"		For example, if the tag is {-mytag:"c-} and `tagcmd' is 'j', then$/;"	r
+mytag	woc.vim	/^" For example, if the tag is {-mytag:"c-} and `a:1' is 'j', then the action$/;"	r
+overview	woc.vim	/^"		script, or jump to {-overview-}$/;"	r
+tagref1-} bla bla {-tagref2	TODO	/^	{-tagref1-} bla bla {-tagref2-}$/;"	r
+this	README	/^	  WoC tags (one like {-this-}).$/;"	r
+woc_cache_url	woc.psy	/^	save rurl in {-woc_cache_url-}$/;"	r
+wocdownloader	woc.psy	/^	call {-wocdownloader:"fj-} {$/;"	r
+wocdownloader	woc.vim	/^"		- ~\/.vim\/woc\/ must contain the {-wocdownloader-} script!$/;"	r
+woctags.sh	TODO	/^- {-woctags.sh:"fj-} has a regexp bug:$/;"	r

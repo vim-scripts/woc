@@ -1,0 +1,34 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+WOC	woc.vim	/^augroup WOC$/;"	a
+WOCAddIndexOpt	woc.vim	/^fun! s:WOCAddIndexOpt(ml)$/;"	f
+WOCClearCache	woc.vim	/^fun! s:WOCClearCache()$/;"	f
+WOCExpandAlias	woc.vim	/^fun! s:WOCExpandAlias(alias)$/;"	f
+WOCExtractTag	woc.vim	/^fun! s:WOCExtractTag()$/;"	f
+WOCExtractVIandTAGcmd	woc.vim	/^fun! s:WOCExtractVIandTAGcmd(tag)$/;"	f
+WOCFakeTagJump	woc.vim	/^fun! s:WOCFakeTagJump(file)$/;"	f
+WOCHome	woc.vim	/^fun! s:WOCHome()$/;"	f
+WOCInitialize	woc.vim	/^fun! s:WOCInitialize()$/;"	f
+WOCLoadIndex	woc.vim	/^fun! s:WOCLoadIndex()$/;"	f
+WOCLoadRemote	woc.vim	/^fun! s:WOCLoadRemote(url)$/;"	f
+WOCOpenFile	woc.vim	/^fun! s:WOCOpenFile(file)$/;"	f
+WOCSyntax	woc.vim	/^fun! s:WOCSyntax()$/;"	f
+WOCTagCmd	woc.vim	/^fun! s:WOCTagCmd(...)$/;"	f
+WOCTuneCommentSyntax	woc.vim	/^function! s:WOCTuneCommentSyntax(ft)$/;"	f
+WOC_HOME	woc.vim	/^	let $WOC_HOME = s:WOCHome()$/;"	v
+cpo	woc.vim	/^let &cpo = s:save_cpo $/;"	v
+home	woc.vim	/^		let home= substitute(&rtp,',.*$','','')$/;"	v
+home	woc.vim	/^		let home= substitute(home,'\/','\\\\','g')$/;"	v
+loaded_wocscript	woc.vim	/^let g:loaded_wocscript=1$/;"	v
+main	test/midi.c	/^int main()$/;"	f
+miii	test/midi.c	/^int miii()$/;"	f
+momo	test/midi.c	/^int momo()$/;"	f
+save_cpo	woc.vim	/^let s:save_cpo = &cpo$/;"	v
+uffa	test/midi.c	/^int uffa()$/;"	f
+woc_clear_cache	woc.vim	/^	let g:woc_clear_cache = 1$/;"	v
+woc_index_fname	woc.vim	/^	let g:woc_index_fname="index.woc"$/;"	v
+woc_indexes	woc.vim	/^	let s:woc_indexes[s:woc_cur_path]=b:woc_index$/;"	v
