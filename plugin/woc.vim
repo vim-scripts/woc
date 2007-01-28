@@ -60,7 +60,6 @@
 "		calling this function"
 "
 " Mappings:	These mappings are automatically defined.
-" 		If you don't like them, modify {-:/nmap-}
 "
 "			<C-]>	-->  :Woctags
 "	
@@ -74,6 +73,12 @@
 "			<C-_>i  -->  :Woctags i
 "			<C-_>d  -->  :Woctags d
 "
+" 		If you don't like them, put the following line inside
+" 		your .vimrc and define there your own mappings:
+"
+" 			let g:woc_mappings = 1
+"
+"
 " Options:	If is g:woc_clear_cache is set to 1 (default), the woc cache
 "		will be automatically cleaned on exit.
 "
@@ -84,6 +89,12 @@
 "		If g:woc_syntax_hl is set to 1 (default), the WoC tags will be
 "		highlighted.
 "
+"		g:woc_global_index can be set to a global ``index.woc'' file.
+"		For example, you can put something like this in your .vimrc:
+"			
+"			let g:woc_global_index = "/my/path/to/my_index.woc"
+"
+" Version:	1.2
 " Author:	AlpT (@freaknet.org)
 " Licence:	This program is free software; you can redistribute it
 "               and/or modify it under the terms of the GNU General Public
@@ -117,29 +128,36 @@ augroup END
 
 " User command
 com! -nargs=*           Woctags     call s:WOCTagCmd(<f-args>)
-com! -nargs=*           WocClearCache     call s:WOCClearCache()
+com! -nargs=*           WocClearCache     call s:WOCClearCache(1)
 
 " Add our mappings 
-nmap <C-]>  :call <SID>WOCTagCmd()<cr>
-" See {-TODO mouse support-}
-"nmap <C-LeftMouse>  :call <SID>WOCTagCmd()<cr>
-"nmap g<LeftMouse>  :call <SID>WOCTagCmd()<cr>
+if !exists("g:woc_mappings") || !g:woc_mappings
+	nmap <C-]>  :call <SID>WOCTagCmd()<cr>
 
-nmap <C-_>s :Woctags s<cr>
-nmap <C-_>g :Woctags g<cr>
-nmap <C-_>c :Woctags c<cr>
-nmap <C-_>t :Woctags t<cr>
-nmap <C-_>e :Woctags e<cr>
-nmap <C-_>r :Woctags r<cr>
-nmap <C-_>f :Woctags fj<cr>
-nmap <C-_>i :Woctags i<cr>
-nmap <C-_>d :Woctags d<cr>
+	" See {-TODO mouse support-}
+	"nmap <C-LeftMouse>  :call <SID>WOCTagCmd()<cr>
+	"nmap g<LeftMouse>  :call <SID>WOCTagCmd()<cr>
 
+	nmap <C-_>s :Woctags s<cr>
+	nmap <C-_>g :Woctags g<cr>
+	nmap <C-_>c :Woctags c<cr>
+	nmap <C-_>t :Woctags t<cr>
+	nmap <C-_>e :Woctags e<cr>
+	nmap <C-_>r :Woctags r<cr>
+	nmap <C-_>f :Woctags fj<cr>
+	nmap <C-_>i :Woctags i<cr>
+	nmap <C-_>d :Woctags d<cr>
+
+	let g:woc_mappings = 1
+endif
 
 " Initialize: 
 " 
 if !exists("g:woc_index_fname")
 	let g:woc_index_fname="index.woc"
+endif
+if !exists("g:woc_global_index")
+	let g:woc_global_index=""
 endif
 if !exists("g:woc_clear_cache")
 	let g:woc_clear_cache = 1
@@ -243,14 +261,8 @@ fun! s:WOCAddIndexOpt(ml)
 	endif
 endfun
 
-"
-" WOCLoadIndex: loads "index.woc" and the options defined in it. 
-fun! s:WOCLoadIndex()
-
-	" Initialize
-	call s:WOCInitialize()
-
-	let file=expand("%:p:h") . '/' . g:woc_index_fname
+fun! s:WoCLoadIndexFile(file)
+	let file=a:file
 
 	if !filereadable(file)
 		let s:index_loaded=0
@@ -296,8 +308,25 @@ fun! s:WOCLoadIndex()
 			continue
 		endif
 	endfor
+endfun
 
-	" Save this option for future references
+"
+" WOCLoadIndex: loads "index.woc" and the options defined in it. 
+fun! s:WOCLoadIndex()
+
+	" Initialize
+	call s:WOCInitialize()
+
+	" Load options from the global index
+	if g:woc_global_index != ""
+		call s:WoCLoadIndexFile(g:woc_global_index)
+	endif
+	let file=expand("%:p:h") . '/' . g:woc_index_fname
+
+	" Load options from ./index.woc
+	call s:WoCLoadIndexFile(file)
+
+	" Save options for future references
 	let s:woc_indexes[s:woc_cur_path]=b:woc_index
 endfun
 
@@ -665,8 +694,13 @@ fun! s:WOCLoadRemote(url)
 	endif
 endfun
 
+"
 " WOCClearCache: clear the woc cache 
-fun! s:WOCClearCache()
+"
+" If a:1 is set to a non-zero value, the whole cache dir will be removed,
+" otherwise only the used subdirs will be cleaned.
+"
+fun! s:WOCClearCache(...)
 	let home=fnamemodify(expand("$WOC_HOME"), ":p")
 
 	if home == "/" || (home !~ simplify(expand("$HOME").'/').'.*\w\+' && home !~ "/tmp")
@@ -674,11 +708,19 @@ fun! s:WOCClearCache()
 		return
 	endif
 
-	echo "WoC: Cleaning the cache"
-	for key in keys(s:woc_cache_url)
-		"call Decho("rm -rf " . expand("$WOC_HOME").'/cache/'.key)
-		call system("rm -rf " . expand("$WOC_HOME").'/cache/'.key)
-	endfor
+	if a:0 >= 1 && a:1
+		echo "WoC: Cleaning the whole cache"
+		"call Decho("rm -rf " . expand("$WOC_HOME").'/cache/')
+		call system("rm -rf " . expand("$WOC_HOME").'/cache/')
+	else
+		if exists("s:woc_cache_url") && s:woc_cache_url != {}
+			echo "WoC: Cleaning the last used cache"
+			for key in keys(s:woc_cache_url)
+				"call Decho("rm -rf " . expand("$WOC_HOME").'/cache/'.key)
+				call system("rm -rf " . expand("$WOC_HOME").'/cache/'.key)
+			endfor
+		endif
+	endif
 endfun
 
 
@@ -748,6 +790,10 @@ function! s:WOCTuneCommentSyntax(ft)
       let b:woc_syntax_options = "contained"
     elseif a:ft == "c" || a:ft == "cpp"
       syn cluster cCommentGroup         add=wocHyperTextJump,wocHyperTextEntry
+      let b:woc_syntax_options = "contained"
+    elseif a:ft == "python" || a:ft == "py"
+    "  syn cluster pythonComment  	add=wocHyperTextJump,wocHyperTextEntry
+      syn match pythonComment /#.*$/  contains=pythonTodo,wocHyperTextJump,wocHyperTextEntry
       let b:woc_syntax_options = "contained"
     elseif a:ft == "csh"
       syn cluster cshCommentGroup               add=wocHyperTextJump,wocHyperTextEntry

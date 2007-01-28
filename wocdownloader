@@ -113,6 +113,20 @@ then
 		done
 	fi
 
+	# Create the dir tree 
+	OLD_IFS=$IFS
+	IFS=$'\n'
+	for i in $(cat tags tags.woc tags.rev.woc 2> /dev/null | grep -v \
+		'^!_TAG' | awk '{print $2}' | grep '/')
+	do
+		d=$(echo $i | sed -e 's#/[^/]*$##')
+		if [ -z "$d" ]; then continue; fi
+		if [ ! -d "./$d" ]; then
+			mkdir -p "./$d"
+		fi
+	done
+	IFS="$OLD_IFS"
+
 	touch .woc/.tagsdone
 else
 	something_downloaded=1

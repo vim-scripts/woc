@@ -6,7 +6,7 @@
 !_TAG_PROGRAM_VERSION	5.6	//
 WOC	woc.vim	/^augroup WOC$/;"	a
 WOCAddIndexOpt	woc.vim	/^fun! s:WOCAddIndexOpt(ml)$/;"	f
-WOCClearCache	woc.vim	/^fun! s:WOCClearCache()$/;"	f
+WOCClearCache	woc.vim	/^fun! s:WOCClearCache(...)$/;"	f
 WOCExpandAlias	woc.vim	/^fun! s:WOCExpandAlias(alias)$/;"	f
 WOCExtractTag	woc.vim	/^fun! s:WOCExtractTag()$/;"	f
 WOCExtractVIandTAGcmd	woc.vim	/^fun! s:WOCExtractVIandTAGcmd(tag)$/;"	f
@@ -20,15 +20,18 @@ WOCSyntax	woc.vim	/^fun! s:WOCSyntax()$/;"	f
 WOCTagCmd	woc.vim	/^fun! s:WOCTagCmd(...)$/;"	f
 WOCTuneCommentSyntax	woc.vim	/^function! s:WOCTuneCommentSyntax(ft)$/;"	f
 WOC_HOME	woc.vim	/^	let $WOC_HOME = s:WOCHome()$/;"	v
+WoCLoadIndexFile	woc.vim	/^fun! s:WoCLoadIndexFile(file)$/;"	f
+copy_cvs_entry	pacca	/^copy_cvs_entry() {$/;"	f
+copy_cvs_entry	pacca~	/^copy_cvs_entry() {$/;"	f
 cpo	woc.vim	/^let &cpo = s:save_cpo $/;"	v
+download_files	wocdownloader	/^download_files() {$/;"	f
+download_files	wocdownloader~	/^download_files() {$/;"	f
 home	woc.vim	/^		let home= substitute(&rtp,',.*$','','')$/;"	v
 home	woc.vim	/^		let home= substitute(home,'\/','\\\\','g')$/;"	v
 loaded_wocscript	woc.vim	/^let g:loaded_wocscript=1$/;"	v
-main	test/midi.c	/^int main()$/;"	f
-miii	test/midi.c	/^int miii()$/;"	f
-momo	test/midi.c	/^int momo()$/;"	f
 save_cpo	woc.vim	/^let s:save_cpo = &cpo$/;"	v
-uffa	test/midi.c	/^int uffa()$/;"	f
 woc_clear_cache	woc.vim	/^	let g:woc_clear_cache = 1$/;"	v
+woc_global_index	woc.vim	/^	let g:woc_global_index=""$/;"	v
 woc_index_fname	woc.vim	/^	let g:woc_index_fname="index.woc"$/;"	v
-woc_indexes	woc.vim	/^	let s:woc_indexes[s:woc_cur_path]=b:woc_index$/;"	v
+woc_mappings	woc.vim	/^	let g:woc_mappings = 1$/;"	v
+woc_syntax_hl	woc.vim	/^	let g:woc_syntax_hl = 1$/;"	v
